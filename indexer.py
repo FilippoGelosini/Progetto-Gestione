@@ -1,6 +1,7 @@
 from whoosh.fields import Schema, TEXT, DATETIME, NUMERIC, BOOLEAN
 from whoosh.index import create_in, open_dir
 from datetime import datetime
+import time
 import csv
 import os
 import pickle
@@ -79,4 +80,9 @@ def add_to_index(main_index, title_index):
 if __name__ == "__main__":
     main_index = get_index(main_path, main_schema, "Main")
     title_index = get_index(title_path, title_schema, "Title")
+
+    start = time.perf_counter()
     add_to_index(main_index, title_index)
+    end = time.perf_counter()
+
+    print("\nElapsed Time: " + str(end - start) + "\n")
