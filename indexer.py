@@ -41,12 +41,12 @@ def get_index(dir, schema_type, index_type):
 
 def add_to_index(main_index, title_index):
     with open(dataset_path, "r", encoding="utf-8") as file:
-        csvFile = csv.reader(file)
-        next(csvFile)
+        csv_file = csv.reader(file)
+        next(csv_file)
         main_writer = main_index.writer()
         title_writer = title_index.writer()
         counter = 1
-        for row in csvFile:
+        for row in csv_file:
             try:
                 date = datetime.strptime(row[0], "%Y-%m-%d")
                 playtime = int(row[3])
