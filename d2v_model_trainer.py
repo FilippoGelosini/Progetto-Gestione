@@ -1,6 +1,7 @@
 import gensim
 import smart_open
 import csv
+import time
 
 dataset_path = "steam_reviews_small.csv"
 model_path = "doc2vec.model"
@@ -13,6 +14,8 @@ title_index = None
 limit = 10
 
 #df = pd.read_csv(dataset_path, encoding="ISO-8859-1")
+
+start = time.perf_counter()
 
 def read_corpus(tokens_only=False):
     with smart_open.open(dataset_path, mode="r", encoding="ISO-8859-1") as file:
@@ -49,4 +52,8 @@ print("Trained the model\n")
 
 model.save(model_path)
 
-print(f"Saved model. Model name :'{model_path}'")
+print(f"Saved model. Model name :'{model_path}'\n")
+
+end = time.perf_counter()
+
+print("\nElapsed Time: " + str(end - start) + "\n")
