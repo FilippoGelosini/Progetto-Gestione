@@ -1,6 +1,3 @@
-#%matplotlib inline
-#import matplotlib.pyplot as plt
-import logging
 import pandas as pd
 import gensim
 import smart_open
@@ -40,7 +37,7 @@ print("Built the train corpus\n")
 print(train_corpus[0])
 #print(test_corpus[0])
 
-model = gensim.models.doc2vec.Doc2Vec(vector_size=50, min_count=2, epochs=2, workers=8)
+model = gensim.models.doc2vec.Doc2Vec(vector_size=50, min_count=2, epochs=2, workers=4)
 
 model.build_vocab(train_corpus)
 print("Built the vocabulary\n")
@@ -50,3 +47,7 @@ print("Built the vocabulary\n")
 model.train(train_corpus, total_examples=model.corpus_count, epochs=5)
 
 print("Trained the model\n")
+
+model.save(model_path)
+
+print(f"Saved model. Model name :'{model_path}'")
