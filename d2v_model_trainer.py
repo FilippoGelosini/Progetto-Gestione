@@ -39,7 +39,7 @@ print("Built the train corpus\n")
 print(train_corpus[0])
 #print(test_corpus[0])
 
-model = gensim.models.doc2vec.Doc2Vec(vector_size=50, min_count=2, epochs=5, workers=4)
+model = gensim.models.doc2vec.Doc2Vec(vector_size=100, min_count=2, epochs=5, workers=4)
 
 model.build_vocab(train_corpus)
 print("Built the vocabulary\n")
