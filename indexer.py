@@ -17,6 +17,7 @@ title_list = set()
 title_words = set()
 
 main_schema = Schema(
+    id = NUMERIC(stored=True),
     date = DATETIME(stored=True),
     hours_played = NUMERIC(stored=True),
     is_early_access = BOOLEAN(stored=True),
@@ -45,7 +46,7 @@ def add_to_index(main_index, title_index):
         next(csv_file)
         main_writer = main_index.writer()
         title_writer = title_index.writer()
-        counter = 1
+        counter = 0
         for row in csv_file:
             try:
                 date = datetime.strptime(row[0], "%Y-%m-%d")
@@ -56,8 +57,8 @@ def add_to_index(main_index, title_index):
                 title = row[7]
 
                 
-                main_writer.add_document(date=date, hours_played=playtime, is_early_access=early_access, recommendation=recommendation, review=review, title=title)
-                print(f"Review added to the index - {counter}")
+                main_writer.add_document(id=counter, date=date, hours_played=playtime, is_early_access=early_access, recommendation=recommendation, review=review, title=title)
+                print(f"Review added to the index - {counter + 1}")
                 counter += 1
 
                 if title not in title_list:

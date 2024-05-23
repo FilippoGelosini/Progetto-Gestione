@@ -7,7 +7,7 @@ import pickle
 words_path = "title_words.pickle"
 main_path = "index"
 title_path = "title"
-fieldlist = ["date", "hours_played", "is_early_access", "recommendation", "review", "title"]
+fieldlist = ["id", "date", "hours_played", "is_early_access", "recommendation", "review", "title"]
 main_index = None
 title_index = None
 limit = 10

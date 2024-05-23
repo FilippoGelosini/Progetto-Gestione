@@ -2,9 +2,11 @@ import gensim
 import smart_open
 import csv
 import time
+import pickle
 
 dataset_path = "steam_reviews_small.csv"
 model_path = "doc2vec.model"
+model_path_pickle = "doc2vec.model.pickle"
 words_path = "title_words.pickle"
 main_path = "index"
 title_path = "title"
@@ -39,18 +41,21 @@ print("Built the train corpus\n")
 print(train_corpus[0])
 #print(test_corpus[0])
 
-model = gensim.models.doc2vec.Doc2Vec(vector_size=100, min_count=2, epochs=5, workers=4)
+model = gensim.models.doc2vec.Doc2Vec(vector_size=200, window=10, min_count=1, epochs=100, workers=60)
 
 model.build_vocab(train_corpus)
 print("Built the vocabulary\n")
 
 #print(f"Word 'monster' appeared {model.wv.get_vecattr('penalty', 'count')} times in the training corpus.")
 
-model.train(train_corpus, total_examples=model.corpus_count, epochs=5)
+model.train(train_corpus, total_examples=model.corpus_count, epochs=10)
 
 print("Trained the model\n")
 
 model.save(model_path)
+
+with open(model_path_pickle, "wb")as file:
+    pickle.dump(model, file)
 
 print(f"Saved model. Model name :'{model_path}'\n")
 
