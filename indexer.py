@@ -86,4 +86,5 @@ if __name__ == "__main__":
     add_to_index(main_index, title_index)
     end = time.perf_counter()
 
-    print("\nElapsed Time: " + str(end - start) + "\n")
+    time = end - start
+    print(f"\nElapsed time: {int(time//60)}:{time%60}\n")

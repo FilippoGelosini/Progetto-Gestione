@@ -15,10 +15,6 @@ main_index = None
 title_index = None
 limit = 10
 
-#df = pd.read_csv(dataset_path, encoding="ISO-8859-1")
-
-start = time.perf_counter()
-
 def read_corpus(tokens_only=False):
     with smart_open.open(dataset_path, mode="r", encoding="ISO-8859-1") as file:
         csv_file = csv.reader(file)
@@ -27,38 +23,35 @@ def read_corpus(tokens_only=False):
         count = 0
         for row in csv_file:
             tokens = gensim.utils.simple_preprocess(row[6])
-            if tokens_only:
-                yield tokens
-            else:
-                yield gensim.models.doc2vec.TaggedDocument(tokens, [count])
+            if len(tokens) > 15:
+                if tokens_only:
+                    yield tokens
+                else:
+                    yield gensim.models.doc2vec.TaggedDocument(tokens, [count])
             count +=1
 
-print("\n")
-train_corpus = list(read_corpus())
-print("Built the train corpus\n")
-#test_corpus = list(read_corpus(tokens_only=True))
 
-print(train_corpus[0])
-#print(test_corpus[0])
+def build_model(train_corpus):
+    model = gensim.models.doc2vec.Doc2Vec(vector_size=200, window=10, min_count=1, epochs=100, workers=60)
 
-model = gensim.models.doc2vec.Doc2Vec(vector_size=200, window=10, min_count=1, epochs=100, workers=60)
+    model.build_vocab(train_corpus)
+    print("Built the vocabulary\n")
 
-model.build_vocab(train_corpus)
-print("Built the vocabulary\n")
+    model.train(train_corpus, total_examples=model.corpus_count, epochs=10)
+    print("Trained the model\n")
 
-#print(f"Word 'monster' appeared {model.wv.get_vecattr('penalty', 'count')} times in the training corpus.")
+    model.save(model_path)
 
-model.train(train_corpus, total_examples=model.corpus_count, epochs=10)
+    print(f"Saved the model. Model name :'{model_path}'\n")
+    return model
 
-print("Trained the model\n")
+if __name__ == "__main__":
+    start = time.perf_counter()
+    
+    train_corpus = list(read_corpus())
+    print("Built the train corpus\n")
+    model = build_model(train_corpus)
 
-model.save(model_path)
-
-with open(model_path_pickle, "wb")as file:
-    pickle.dump(model, file)
-
-print(f"Saved model. Model name :'{model_path}'\n")
-
-end = time.perf_counter()
-
-print("\nElapsed Time: " + str(end - start) + "\n")
+    end = time.perf_counter()
+    time = end - start
+    print(f"\nElapsed time: {int(time//60)}:{time%60}\n")

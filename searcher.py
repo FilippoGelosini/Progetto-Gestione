@@ -12,9 +12,8 @@ main_index = None
 title_index = None
 limit = 10
 
-file = open(words_path, "rb")
-title_words = pickle.load(file)
-file.close()
+with open(words_path, "rb") as file:
+    title_words = pickle.load(file)
 
 def get_index(dir, index_type):
     if not os.path.exists(dir):
