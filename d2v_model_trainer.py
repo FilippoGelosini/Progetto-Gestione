@@ -2,7 +2,6 @@ import gensim
 import smart_open
 import csv
 import time
-import pickle
 
 dataset_path = "steam_reviews_small.csv"
 model_path = "doc2vec.model"
@@ -23,7 +22,7 @@ def read_corpus(tokens_only=False):
         count = 0
         for row in csv_file:
             tokens = gensim.utils.simple_preprocess(row[6])
-            if len(tokens) > 15:
+            if len(tokens) > 10:
                 if tokens_only:
                     yield tokens
                 else:
