@@ -5,13 +5,7 @@ import time
 
 dataset_path = "steam_reviews_small.csv"
 model_path = "doc2vec.model"
-model_path_pickle = "doc2vec.model.pickle"
-words_path = "title_words.pickle"
-main_path = "index"
-title_path = "title"
 fieldlist = ["date", "hours_played", "is_early_access", "recommendation", "review", "title"]
-main_index = None
-title_index = None
 limit = 10
 
 def read_corpus(tokens_only=False):

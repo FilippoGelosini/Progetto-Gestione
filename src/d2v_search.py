@@ -7,7 +7,6 @@ import whoosh.matching
 
 dataset_path = "steam_reviews_small.csv"
 model_path = "doc2vec.model"
-model_path_pickle = "doc2vec.model.pickle"
 words_path = "title_words.pickle"
 main_path = "index"
 title_path = "title"
