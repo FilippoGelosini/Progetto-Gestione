@@ -25,7 +25,7 @@ def read_corpus(tokens_only=False):
 
 
 def build_model(train_corpus):
-    model = gensim.models.doc2vec.Doc2Vec(vector_size=200, window=10, min_count=1, epochs=100, workers=60)
+    model = gensim.models.doc2vec.Doc2Vec(vector_size=200, window=10, min_count=5, epochs=100, workers=60)
 
     model.build_vocab(train_corpus)
     print("Built the vocabulary\n")
