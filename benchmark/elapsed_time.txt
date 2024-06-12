@@ -1,0 +1,2 @@
+Tempo di indicizzazione: 17:01.69
+Tempo di addestramento: 8:17.77
