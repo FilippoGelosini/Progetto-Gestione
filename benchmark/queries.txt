@@ -1,10 +1,10 @@
 1) Trova i giochi della serie "Civilization" -> civilization
-2) Trova le recensioni di "Monster Hunter: World" -> monster hunter world reviews
-3) 
-4) 
-5) 
-6) 
-7) 
-8) 
-9) 
-10) 
+2) Trova recensioni di "Monster Hunter: World" -> monster hunter world reviews
+3) Trova recensioni di giochi descritti come "survival horror" -> survival horror
+4) Trova le recensioni dove si citano "server error" -> server error
+5) Trova le recensioni dove il gioco viene definito "time consuming" -> time consuming game
+6) Trova le recensioni simili a "this game is fantastic" -> this game is fantastic
+7) Trova le recensioni simili a "i had an abysmal experience" -> i had an abysmal experience
+8) Trova le recensioni simili a "the gameplay is superb" -> the gameplay is superb
+9) Trova le recensioni simili a "this game looks spectacularly good" -> this game looks spectacularly good
+10) Trova le recensioni simili a "extremely good mechanics" -> extremely good mechanics
