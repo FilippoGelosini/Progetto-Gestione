@@ -60,6 +60,6 @@ if __name__ == "__main__":
         if search_type == 1:
             full_text_search(main_index, title_index)
         if search_type == 2:
-            d2v_search(model, main_index)
+            d2v_search(model, main_index, title_index)
         if search_type < 0 or search_type > 2:
             print("Invalid Choice")
